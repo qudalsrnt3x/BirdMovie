@@ -16,6 +16,10 @@ db = client.birdMovie
 def main():
     return render_template('index.html')
 
+@app.route('/footers')
+def footer():
+    return render_template('layout/footer.html')
+
 @app.route('/movie-List')
 def movieList():
     return render_template('movie-list.html')
