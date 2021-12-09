@@ -16,6 +16,7 @@
 <!-- 기본CSS -->
     <link rel="stylesheet" href="../static/css/page/index.css">
     <!--    <link href="{{url_for('static', filename='css/main.css')}}" rel="stylesheet" >-->
+    <script src="../static/js/main.js"></script>
 
     <script type="text/javascript">
         $(document).ready(function (){
@@ -70,52 +71,14 @@
             </form>
             <div class="movie-current movie-content">
                 <h3 class="movie-title">현재 상영작</h3>
-                <div class="cardBox">
-                    <a class="card" href="{{url_for('movieList')}}">
-                        <img src="https://movie-phinf.pstatic.net/20211124_230/1637742697155U1Th7_JPEG/movie_image.jpg?type=m203_290_2" alt="유체이탈자">
-                        <sapn>유체이탈자</sapn>
-                    </a>
-                    <a class="card" href="{{url_for('movieList')}}">
-                        <img src="https://movie-phinf.pstatic.net/20211124_230/1637742697155U1Th7_JPEG/movie_image.jpg?type=m203_290_2" alt="유체이탈자">
-                        <sapn>유체이탈자</sapn>
-                    </a>
-                    <a class="card" href="{{url_for('movieList')}}">
-                        <img src="https://movie-phinf.pstatic.net/20211124_230/1637742697155U1Th7_JPEG/movie_image.jpg?type=m203_290_2" alt="유체이탈자">
-                        <sapn>유체이탈자</sapn>
-                    </a>
-                    <a class="card" href="{{url_for('movieList')}}">
-                        <img src="https://movie-phinf.pstatic.net/20211124_230/1637742697155U1Th7_JPEG/movie_image.jpg?type=m203_290_2" alt="유체이탈자">
-                        <sapn>유체이탈자</sapn>
-                    </a>
-                    <a class="card" href="{{url_for('movieList')}}">
-                        <img src="https://movie-phinf.pstatic.net/20211124_230/1637742697155U1Th7_JPEG/movie_image.jpg?type=m203_290_2" alt="유체이탈자">
-                        <sapn>유체이탈자</sapn>
-                    </a>
+                <div class="cardBox" id="movie-box">
+
                 </div>
             </div>
             <div class="movie-rank movie-content">
                 <h3 class="movie-title">네이버 영화 순위</h3>
-                <div class="cardBox">
-                    <a class="card" href="{{url_for('movieList')}}">
-                        <img src="https://movie-phinf.pstatic.net/20211116_218/1637044152743qvvAG_JPEG/movie_image.jpg?type=m203_290_2" alt="엘칸토">
-                        <sapn>엘칸토</sapn>
-                    </a>
-                    <a class="card" href="{{url_for('movieList')}}">
-                        <img src="https://movie-phinf.pstatic.net/20211116_218/1637044152743qvvAG_JPEG/movie_image.jpg?type=m203_290_2" alt="엘칸토">
-                        <sapn>엘칸토</sapn>
-                    </a>
-                    <a class="card" href="{{url_for('movieList')}}">
-                        <img src="https://movie-phinf.pstatic.net/20211116_218/1637044152743qvvAG_JPEG/movie_image.jpg?type=m203_290_2" alt="엘칸토">
-                        <sapn>엘칸토</sapn>
-                    </a>
-                    <a class="card" href="{{url_for('movieList')}}">
-                        <img src="https://movie-phinf.pstatic.net/20211116_218/1637044152743qvvAG_JPEG/movie_image.jpg?type=m203_290_2" alt="엘칸토">
-                        <sapn>엘칸토</sapn>
-                    </a>
-                    <a class="card" href="{{url_for('movieList')}}">
-                        <img src="https://movie-phinf.pstatic.net/20211116_218/1637044152743qvvAG_JPEG/movie_image.jpg?type=m203_290_2" alt="엘칸토">
-                        <sapn>엘칸토</sapn>
-                    </a>
+                <div class="cardBox" id="rank_box">
+
                 </div>
             </div>
         </div>
