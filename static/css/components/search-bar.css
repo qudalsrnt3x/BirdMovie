@@ -1,0 +1,4 @@
+.movie-search{ width: 100%; display: flex; justify-content: center; align-items: center; padding: 30px; box-sizing: border-box;}
+.movie-search input { width: 550px; height: 45px; border-radius: 5px; border: 1px gray solid; margin-right: 10px; }
+.movie-search input:placeholder-shown { text-align: center; box-sizing: border-box; }
+.movie-search button { border: none; background: white;}

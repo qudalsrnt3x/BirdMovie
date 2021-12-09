@@ -1,0 +1,28 @@
+/* component 공통 */
+@import url(../components/footer.css);
+@import url(../components/nav.css);
+@import url(../components/font.css);
+
+
+/* component 부분 */
+@import url(../components/search-bar.css);
+
+
+/* index 페이지 */
+.main-movie { width: 900px; margin: 0 auto;}
+
+
+.main-bg { height: 450px; width: 100%; position: relative; background-image: url(../img/4.jpg); }
+.main-bg .main-bg-firm { position: absolute; left: 50%; transform:translateX(-50%); height: 100%; }
+.main-bg div.carousel { height: 450px; width: 1000px; margin: 0 auto; position:absolute; left: 50%; transform: translateX(-50%);}
+.main-bg div .carousel-item img { height: 450px; width: 100%;}
+.carouselBG { height: 50px; width: 50px; top: 50%; transform:translateY(-50%); background: none; border: none
+;}
+.carouselBTN { width: 100px; height: 100px; }
+
+
+.movie-content { margin-bottom: 30px }
+.movie-content .cardBox { display: flex; justify-content: space-between; align-items: center; width: 100%; }
+.movie-content .card { width: 18%; display: flex; flex-direction: column; justify-content: center; align-items: center; border: none;}
+.movie-content .card img { width: 100%; }
+.movie-content .card span { margin: 10px auto; display: inline-block; }

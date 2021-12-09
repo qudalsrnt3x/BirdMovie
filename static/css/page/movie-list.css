@@ -1,0 +1,17 @@
+/* component 공통*/
+@import url(../components/footer.css);
+@import url(../components/nav.css);
+@import url(../components/font.css);
+
+
+/* component 부분 */
+@import url(../components/listbox.css);
+@import url(../components/search-bar.css);
+
+
+/* movie-list 페이지 */
+.movie-search{ padding: 50px 0;}
+
+.movie-box { width: 900px; margin: 0 auto; }
+.movie-box .movie-box-title { font-size: 20px; font-weight: 600; box-sizing: border-box; background-color: #e9ecef ; border-radius: 5px; width: 200px; height: 40px; line-height: 40px; text-align: center; display: inline-block;  }
+

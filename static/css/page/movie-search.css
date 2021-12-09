@@ -1,0 +1,26 @@
+/* component 공통*/
+@import url(../components/footer.css);
+@import url(../components/nav.css);
+@import url(../components/font.css);
+
+
+/* component 부분 */
+@import url(../components/search-bar.css);
+@import url(../components/listbox.css);
+@import url(../components/inputbox.css);
+
+
+/* page 부분 */
+@import url(../page/movie-list.css);
+
+
+/* movie-search 페이지 */
+.movie-list .list-cont{ width: 80%; }
+
+.review-show { width: 90%; margin: 0 auto; }
+.review-show p { margin: 0; }
+.review-show .review-box { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: #dedfe0 1px solid; padding: 20px 0; }
+.review-show .review-box .show-name { width: 10%; text-align: center;  padding-top: 10px;}
+.review-show .review-box .show-text { width: 80%;  }
+.review-show .review-box .review-show-del { width: 8%; margin-top: 10px; border-radius: 7px; background-color: #e9ecef; border: gray 1px solid; padding: 5px 15px;  }
+
