@@ -2,6 +2,17 @@ from flask import Flask, render_template, jsonify, request
 import json
 app = Flask(__name__)
 
+# 각 기능API 임포트
+from mainAPI import mainAPI
+from listAPI import listAPI
+from detailAPI import detailAPI
+from mymovieAPI import mymovieAPI
+
+app.register_blueprint(mainAPI)
+app.register_blueprint(listAPI)
+app.register_blueprint(detailAPI)
+app.register_blueprint(mymovieAPI)
+
 import requests
 from bs4 import BeautifulSoup
 
@@ -31,23 +42,6 @@ def movieSearch():
 @app.route('/my-movie')
 def myMovie():
     return render_template('my-movie.html')
-#
-
-
-## API 부분
-
-@app.route('/memo', methods=['GET'])
-def listing():
-    sample_receive = request.args.get('sample_give')
-    print(sample_receive)
-    return jsonify({'msg':'GET 연결되었습니다!'})
-
-
-@app.route('/memo', methods=['POST'])
-def saving():
-    sample_receive = request.form['sample_give']
-    print(sample_receive)
-    return jsonify({'msg':'POST 연결되었습니다!'})
 
 
 if __name__ == '__main__':
