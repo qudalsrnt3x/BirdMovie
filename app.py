@@ -13,10 +13,6 @@ app.register_blueprint(listAPI)
 app.register_blueprint(detailAPI)
 app.register_blueprint(mymovieAPI)
 
-import requests
-from bs4 import BeautifulSoup
-
-
 from pymongo import MongoClient
 client = MongoClient('localhost', 27017)
 db = client.birdMovie
