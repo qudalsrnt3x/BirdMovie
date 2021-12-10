@@ -3,7 +3,6 @@ from flask import Blueprint, request, jsonify
 import requests
 from bs4 import BeautifulSoup
 
-
 mainAPI = Blueprint('main', __name__)
 
 # API 작성하는 부분
@@ -33,7 +32,7 @@ def get_movies(url):
     # bs4 headers 등록
     soup = get_headers(url)
 
-    # 영화 이미지, 제목 넣을 list 초기화
+    # 영화 데이터 딕셔너리 넣어줄 리스트 초기화
     movie_list = []
 
     # 가져올 영화 갯수

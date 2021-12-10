@@ -31,8 +31,8 @@
             <a href="/"><i class="fas fa-film"></i> 병아리 MOVIE</a>
             <ul>
                 <li><a href="/">홈</a></li>
-                <li><a href="{{url_for('movieList')}}">현재 상영작</a></li>
-                <li><a href="{{url_for('movieList')}}">순위</a></li>
+                <li><a href="#" onclick="goList('current')">현재 상영작</a></li>
+                <li><a href="#" onclick="goList('rank')">영화 순위</a></li>
             </ul>
             <a href="{{url_for('myMovie')}}"><i class="fas fa-sign-in-alt"></i> mypage</a>
         </div>
@@ -66,8 +66,8 @@
     <div class="main-movieBox">
         <div class="main-movie">
             <form class="movie-search">
-                <input type="text" class="m-searchBar" placeholder="어떤 영화를 검색하시겠어요?">
-                <button><i class="fas fa-search"></i></button>
+                <input type="text" class="m-searchBar" placeholder="어떤 영화를 검색하시겠어요?" id="search-box">
+                <button type="button" onclick="goListBySearch('search')"><i class="fas fa-search"></i></button>
             </form>
             <div class="movie-current movie-content">
                 <h3 class="movie-title">현재 상영작</h3>

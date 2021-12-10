@@ -80,3 +80,24 @@ function textLengthOverCut(txt, len, lastTxt) {
     }
     return txt;
 }
+
+// 검색어 부분
+function goListBySearch(type) {
+    // 검색어 받아오기
+    let query = $('#search-box').val();
+
+    if (query === '') {
+        alert('검색어를 입력해주세요.');
+        $('#search-box').focus();
+        return;
+    }
+
+    // movie-list 페이지로 이동 시 query, type 같이 보내주기
+    location.href = `/movie-list?query=${query}&type=${type}`;
+}
+
+// 리스트페이지로 이동
+function goList(type) {
+
+    location.href = `/movie-list?type=${type}`;
+}

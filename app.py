@@ -27,11 +27,11 @@ def main():
 def footer():
     return render_template('layout/footer.html')
 
-@app.route('/movie-List')
+@app.route('/movie-list')
 def movieList():
     return render_template('movie-list.html')
 
-@app.route('/movie-Search')
+@app.route('/movie-search')
 def movieSearch():
     return render_template('movie-search.html')
 
