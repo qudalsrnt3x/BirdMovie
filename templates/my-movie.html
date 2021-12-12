@@ -18,6 +18,25 @@
     <!--    <link href="{{url_for('static', filename='css/main.css')}}" rel="stylesheet" >-->
     <script src="../static/js/main.js"></script>
 
+     <script type="text/javascript">
+            // 로딩되자마자 뜨는 쇼리뷰 함수
+            $(document).ready(function () {
+                showReview();
+            });
+
+            function makeReview() {
+                let movie_title = $('.mymovie-name-cont').val()
+                $.ajax({
+                    type: "POST",
+                    url: "/my-movie",
+                    data: {movie_title:movie_title},
+                    success: function (response) {
+                        alert(response["msg"]);
+                        window.location.reload();
+                    }
+                })
+            }
+        </script>
 </head>
 <body>
 
@@ -31,7 +50,7 @@
             </p>
             <p class="input-text">
                 <textarea class="mymovie-text-cont" placeholder="한줄평을 남겨주세요"></textarea>
-                <button class="mymovie-input-save">저장</button>
+                <button onclick="makeReview()" class="mymovie-input-save">저장</button>
             </p>
         </form>
         <div class="mymovie-Box">

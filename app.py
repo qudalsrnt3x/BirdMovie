@@ -1,5 +1,6 @@
 from flask import Flask, render_template, jsonify, request
 import json
+
 app = Flask(__name__)
 
 # 각 기능API 임포트
@@ -37,7 +38,7 @@ def movieSearch():
 @app.route('/my-movie')
 def myMovie():
     path = request.path
-    return render_template('my-movie.html',path=path)
+    return render_template('my-movie.html', path=path)
 
 
 if __name__ == '__main__':
