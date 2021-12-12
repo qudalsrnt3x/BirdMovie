@@ -16,26 +16,13 @@
 <!-- 기본CSS -->
     <link rel="stylesheet" href="../static/css/page/my-movie.css">
     <!--    <link href="{{url_for('static', filename='css/main.css')}}" rel="stylesheet" >-->
+    <script src="../static/js/main.js"></script>
 
-    <script type="text/javascript">
-        $(document).ready(function (){
-            // footer.html 인클루드
-            $('#footers').load('/footers')
-        })
-    </script>
 </head>
 <body>
-    <nav>
-        <div class="main-nav">
-            <a href="/"><i class="fas fa-film"></i> 병아리 MOVIE</a>
-            <ul>
-                <li><a href="/">홈</a></li>
-                <li><a href="{{url_for('movieList')}}">현재 상영작</a></li>
-                <li><a href="{{url_for('movieList')}}">순위</a></li>
-            </ul>
-            <a href="{{url_for('myMovie')}}"><i class="fas fa-sign-in-alt"></i> mypage</a>
-        </div>
-    </nav>
+
+    {% include '/layout/header.html' %}
+
     <div class="movie-box">
         <p class="movie-box-title">MY MOVIE</p>
         <form class="review-input">
@@ -162,7 +149,7 @@
         </div>
     </div>
 
-    <div id="footers"></div>
+    {% include '/layout/footer.html' %}
 
 </body>
 

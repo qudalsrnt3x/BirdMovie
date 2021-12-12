@@ -21,23 +21,23 @@ db = client.birdMovie
 # HTML을 주는 부분
 @app.route('/')
 def main():
-    return render_template('index.html')
-
-@app.route('/footers')
-def footer():
-    return render_template('layout/footer.html')
+    path = request.path
+    return render_template('index.html', path=path)
 
 @app.route('/movie-list')
 def movieList():
-    return render_template('movie-list.html')
+    path = request.path
+    return render_template('movie-list.html', path=path)
 
 @app.route('/movie-search')
 def movieSearch():
-    return render_template('movie-search.html')
+    path = request.path
+    return render_template('movie-search.html', path=path)
 
 @app.route('/my-movie')
 def myMovie():
-    return render_template('my-movie.html')
+    path = request.path
+    return render_template('my-movie.html',path=path)
 
 
 if __name__ == '__main__':
