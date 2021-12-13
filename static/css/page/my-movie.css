@@ -23,7 +23,7 @@
 
 .movie-card { display: flex; justify-content: space-between; align-items: flex-start;}
 .movie-card .card-img { width: 35%; }
-.movie-card .card-img img { width: 100%; border-radius: 5px;}
+.movie-card .card-img img { width: 40%; border-radius: 5px;}
 
 .movie-card .list-cont { width: 65%; padding-left: 15px; }
 .movie-card .list-cont .title { margin-right: 10px; color: blue;}

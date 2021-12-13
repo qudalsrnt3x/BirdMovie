@@ -7,6 +7,11 @@ db = client.dbsparta
 
 mymovieAPI = Blueprint('mymovie', __name__)
 
+@mymovieAPI.route('/my-movie2', methods=['GET'])
+def reviewing():
+    reviews = list(db.reviewdb.find({}, {'_id': False}))
+    return jsonify({'all_reviews':reviews})
+
 # API 작성하는 부분'
 @mymovieAPI.route('/my-movie', methods=['POST'])
 def listing():
@@ -35,5 +40,3 @@ def listing():
         'comment':comment
     }
     db.reviewdb.insert_one(doc)
-
-    return jsonify({'msg':'GET 연결되었습니다!'})

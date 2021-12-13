@@ -28,7 +28,6 @@
                 let movie_title = $('.mymovie-name-cont').val()
                 let movie_comment = $('.mymovie-text-cont').val()
 
-
                 $.ajax({
                     type: "POST",
                     url: "/my-movie",
@@ -39,6 +38,49 @@
                     }
                 })
             }
+
+            function showReview() {
+
+                $.ajax({
+                    type: "GET",
+                    url: "/my-movie2",
+                    data: {},
+                    success: function (response) {
+                        let reviews = response['all_reviews']
+                        for (let i = 0; i < reviews.length; i++) {
+                            let image = reviews[i]['image']
+                            let title = reviews[i]['title']
+                            let inform = reviews[i]['inform']
+                            let director_actor = reviews[i]['director_actor']
+                            let comment = reviews[i]['comment']
+
+                            let temp_html = `<div class="mymovie-card">
+                                                <div class="movie-card">
+                                                    <div class="card-img"><img src="${image}"></div>
+                                                    <div class="list-cont">
+                                                        <div class="movie-name">
+                                                            <span class="movie-tit">${title}</span>
+                                                        </div>
+                                                        <div class="summary">
+                                                            <span class="title">정보</span><span class="text">${inform}</span>
+                                                        </div>
+                                                        <div class="director">
+                                                            <span class="title">감독, 출연</span><span class="text">${director_actor}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="show-card">
+                                                    <p class="show-name">코멘트</p>
+                                                    <p class="show-text">${comment}</p>
+                                                </div>
+                                                <button class="review-show-del">삭제</button>
+                                            </div>      `
+                            $('.mymovie-Box').append(temp_html)
+                        }
+                    }
+                })
+            }
+
         </script>
 </head>
 <body>
@@ -81,90 +123,6 @@
                 <div class="show-card">
                     <p class="show-name">한줄소감</p>
                     <p class="show-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur alias sequi maiores repudiandae, corporis aliquam enim quae vel eligendi facilis odit saepe iusto. </p>
-                </div>
-                <button class="review-show-del">삭제</button>
-            </div>
-            <div class="mymovie-card">
-                <div class="movie-card">
-                    <div class="card-img"><img src="https://movie-phinf.pstatic.net/20211124_230/1637742697155U1Th7_JPEG/movie_image.jpg?type=m203_290_2"></div> 
-                    <div class="list-cont">
-                        <div class="movie-name">
-                            <span class="movie-age">15</span><span class="movie-tit">유체이탈자</span>
-                        </div>
-                        <div class="summary">
-                            <span class="title">개요</span><span class="text">액션</span>
-                        </div>
-                        <div class="director">
-                            <span class="title">감독</span><span class="text">윤재근</span>
-                        </div>
-                        <div class="actor">
-                            <span class="title">출연</span><span class="text">윤계상,박용우,임지연</span>
-                        </div>
-                        <div class="contents">
-                            <span class="title">개봉</span><span class="text">2021. 11. 24개봉</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="show-card">
-                    <p class="show-name">한줄소감</p>
-                    <p class="show-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur alias sequi maiores repudiandae, corporis aliquam enim quae vel eligendi facilis odit saepe iusto. </p>
-                    
-                </div>
-                <button class="review-show-del">삭제</button>
-            </div>
-            <div class="mymovie-card">
-                <div class="movie-card">
-                    <div class="card-img"><img src="https://movie-phinf.pstatic.net/20211124_230/1637742697155U1Th7_JPEG/movie_image.jpg?type=m203_290_2"></div> 
-                    <div class="list-cont">
-                        <div class="movie-name">
-                            <span class="movie-age">15</span><span class="movie-tit">유체이탈자</span>
-                        </div>
-                        <div class="summary">
-                            <span class="title">개요</span><span class="text">액션</span>
-                        </div>
-                        <div class="director">
-                            <span class="title">감독</span><span class="text">윤재근</span>
-                        </div>
-                        <div class="actor">
-                            <span class="title">출연</span><span class="text">윤계상,박용우,임지연</span>
-                        </div>
-                        <div class="contents">
-                            <span class="title">개봉</span><span class="text">2021. 11. 24개봉</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="show-card">
-                    <p class="show-name">한줄소감</p>
-                    <p class="show-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur alias sequi maiores repudiandae, corporis aliquam enim quae vel eligendi facilis odit saepe iusto. </p>
-                    
-                </div>
-                <button class="review-show-del">삭제</button>
-            </div>
-            <div class="mymovie-card">
-                <div class="movie-card">
-                    <div class="card-img"><img src="https://movie-phinf.pstatic.net/20211124_230/1637742697155U1Th7_JPEG/movie_image.jpg?type=m203_290_2"></div> 
-                    <div class="list-cont">
-                        <div class="movie-name">
-                            <span class="movie-age">15</span><span class="movie-tit">유체이탈자</span>
-                        </div>
-                        <div class="summary">
-                            <span class="title">개요</span><span class="text">액션</span>
-                        </div>
-                        <div class="director">
-                            <span class="title">감독</span><span class="text">윤재근</span>
-                        </div>
-                        <div class="actor">
-                            <span class="title">출연</span><span class="text">윤계상,박용우,임지연</span>
-                        </div>
-                        <div class="contents">
-                            <span class="title">개봉</span><span class="text">2021. 11. 24개봉</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="show-card">
-                    <p class="show-name">한줄소감</p>
-                    <p class="show-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur alias sequi maiores repudiandae, corporis aliquam enim quae vel eligendi facilis odit saepe iusto. </p>
-                    
                 </div>
                 <button class="review-show-del">삭제</button>
             </div>
