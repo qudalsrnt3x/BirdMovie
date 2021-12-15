@@ -28,7 +28,13 @@ def main():
 def movieList():
     path = request.path
     current_type = request.args.get('type')
-    return render_template('movie-list.html', path=path, current_type=current_type)
+    query = request.args.get('query')
+
+    # 검색어 접근이 아닐 경우
+    if query is None:
+        query = 'undefined'
+
+    return render_template('movie-list.html', path=path, current_type=current_type, query=query)
 
 @app.route('/movie-search')
 def movieSearch():

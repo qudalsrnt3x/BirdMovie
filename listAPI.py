@@ -1,3 +1,5 @@
+import json
+
 from flask import Blueprint, request, jsonify
 
 import requests
@@ -7,6 +9,23 @@ listAPI = Blueprint('list', __name__)
 
 
 # API 작성하는 부분
+
+# 검색 목록 가져오는 API
+@listAPI.route('/api/search-list', methods=['GET'])
+def search_list():
+    query = request.args.get('query')
+
+    movie_list = []
+
+    url = 'https://openapi.naver.com/v1/search/movie.json?query='+query
+    headers = {'X-Naver-Client-Id': '8Fr7ih9omHfHYfK4p6d7', 'X-Naver-Client-Secret': 'ibTu_4BcWc'}
+
+    req = requests.get(url, headers=headers)
+
+    result = req.text
+    return json.loads(result)
+
+
 @listAPI.route('/list', methods=['GET'])
 def make_list():
     type_receive = request.args.get('type')
