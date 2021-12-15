@@ -27,7 +27,8 @@ def main():
 @app.route('/movie-list')
 def movieList():
     path = request.path
-    return render_template('movie-list.html', path=path)
+    current_type = request.args.get('type')
+    return render_template('movie-list.html', path=path, current_type=current_type)
 
 @app.route('/movie-search')
 def movieSearch():

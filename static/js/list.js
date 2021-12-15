@@ -1,5 +1,15 @@
-function golist(type) {
+$(document).ready(function (){
+    // 페이지 로딩 시 영화목록 초기화
+    $('.movie-listBox').empty();
+    // 타입 가져오기
+    let type = $('#movie-type').val();
+    // 영화 리스트 불러오기
+    showList(type);
+})
+
+function showList(type) {
     let menuType = (type)
+
     $.ajax({
         type: "GET",
         url: `/list?type=${menuType}`,
@@ -7,11 +17,13 @@ function golist(type) {
         success: function (response) { // 성공하면
              console.log(response["movie_list"]);
             let current = response["movie_list"]
-            for (let i = 0; i <= 10; i++){
+
+            for (let i = 0; current.length; i++){
                 let title = current[i]['title']
                 let img = current[i]['img']
                 let kinds = current[i]['kinds']
                 let director = current[i]['director']
+
                 let temp_html =
                     `<div class="movie-list">
                         <a class="list-img" href="{{url_for('search')}}"><img src="${img}"></a>
