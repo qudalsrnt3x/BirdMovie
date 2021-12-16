@@ -4,6 +4,16 @@ $(document).ready(function () {
 
     // 영화 순위 보여주기
     showMovieRank();
+
+    // 엔터 누르면 hoListBySearch 함수 실행
+    $('#search-box').keydown(function (e) {
+        if (e.keyCode === 13) {
+            goListBySearch('search');
+
+            // 엔터 누를 시 새로고침되는 현상 방지
+            return false;
+        }
+    });
 })
 
 function showCurrentMovies() {
