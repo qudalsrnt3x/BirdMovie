@@ -32,7 +32,7 @@ function showCurrentMovies() {
                     let img = movie['img'];
                     let link = movie['link'];
 
-                    let temp_html = `<a class="card" href="{{url_for('movieList')}}">
+                    let temp_html = `<a class="card" href="/movie-search?link=${link}">
                                         <img src="${img}" alt="${title}" title="${title}">
                                         <sapn>${textLengthOverCut(title)}</sapn>
                                     </a>`;
@@ -60,7 +60,7 @@ function showMovieRank() {
                     let img = movie['img'];
                     let link = movie['link'];
 
-                    let temp_html = `<a class="card" href="{{url_for('movieList')}}">
+                    let temp_html = `<a class="card" href="/movie-search?link=${link}">
                                         <img src="${img}" alt="${title}" title="${title}">
                                         <sapn>${textLengthOverCut(title)}</sapn>
                                     </a>`;

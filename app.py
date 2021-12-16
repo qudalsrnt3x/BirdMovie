@@ -40,7 +40,11 @@ def movieList():
 @app.route('/movie-search')
 def movieSearch():
     path = request.path
-    return render_template('movie-search.html', path=path)
+
+    link = request.args.get('link')
+    print(link)
+
+    return render_template('movie-search.html', path=path, link=link)
 
 @app.route('/my-movie')
 def myMovie():

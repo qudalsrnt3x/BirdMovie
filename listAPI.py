@@ -23,6 +23,7 @@ def search_list():
     req = requests.get(url, headers=headers)
 
     result = req.text
+    print(result)
     return json.loads(result)
 
 
@@ -35,6 +36,9 @@ def make_list():
     # 영화 가져올 갯수
     count = 10
 
+    # link 앞에 공통으로 붙일 url
+    naver_url = 'https://movie.naver.com'
+
     if type_receive == 'current':
         headers = {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36'}
@@ -44,17 +48,20 @@ def make_list():
 
         movies = soup.select('#content > div.article > div:nth-child(1) > div.lst_wrap > ul > li')
 
+
         for index, movie in enumerate(movies):
             img = movie.select_one('.thumb> a > img')['src']
             title = movie.select_one('.tit > a').text
             kinds = movie.select_one('.info_txt1 > dd > span > a').text
             director = movie.select_one('.info_txt1 > dd:nth-child(4) > span > a').text
+            link = naver_url + movie.select_one('div > a')['href']
 
             # 딕셔너리에 담기
             dic = {'img': img,
                    'title': title,
                    'kinds': kinds,
-                   'director': director}
+                   'director': director,
+                   'link': link}
 
             # DB에 dic추가
             movie_list.append(dic)
@@ -81,12 +88,14 @@ def make_list():
             title = movie.select_one('.tit > a').text
             kinds = movie.select_one('.info_txt1 > dd > span > a').text
             director = movie.select_one('.info_txt1 > dd:nth-child(4) > span > a').text
+            link = naver_url + movie.select_one('div > a')['href']
 
             # 딕셔너리에 담기
             dic = {'img': img,
                    'title': title,
                    'kinds': kinds,
-                   'director': director}
+                   'director': director,
+                   'link':link}
 
             # DB에 dic추가
             movie_list.append(dic)

@@ -11,7 +11,6 @@ $(document).ready(function (){
         // 검색어로 접근일 경우 : 검색 목록 불러오기
         showSearchList(query);
     }
-
 })
 
 function showSearchList(query) {
@@ -22,7 +21,6 @@ function showSearchList(query) {
         data: {},
         success: function (response) {
             let movies = response['items'];
-            console.log(movies);
 
             for (let i = 0; i < movies.length; i++) {
                 let movie = movies[i];
@@ -31,10 +29,11 @@ function showSearchList(query) {
                 let img = movie['image'];
                 let actor = movie['actor'];
                 let director = movie['director'];
+                let link = movie['link'];
 
                 let temp_html =
                     `<div class="movie-list">
-                        <a class="list-img" href="{{url_for('search')}}"><img src="${img}"></a>
+                        <a class="list-img" href="/movie-search?link=${link}"><img src="${img}"></a>
                         <div class="list-cont">
                             <div class="movie-name">
                                 <span class="movie-age">15</span><span class="movie-tit">${title}</span>
@@ -77,10 +76,11 @@ function showList(type) {
                 let img = current[i]['img']
                 let kinds = current[i]['kinds']
                 let director = current[i]['director']
+                let link = current[i]['link']
 
                 let temp_html =
                     `<div class="movie-list">
-                        <a class="list-img" href="{{url_for('search')}}"><img src="${img}"></a>
+                        <a class="list-img" href="/movie-search?link=${link}"><img src="${img}"></a>
                         <div class="list-cont">
                             <div class="movie-name">
                                 <span class="movie-age">15</span><span class="movie-tit">${title}</span>

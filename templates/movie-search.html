@@ -29,7 +29,7 @@
     </form>
     <div class="movie-box">
         <p class="movie-box-title">검색 결과 페이지</p>
-        <div class="movie-listBox">
+        <div class="movie-listBox" id="movie_listBox">
             <div class="movie-list">
                 <a class="list-img" href="#" ><img src="https://movie-phinf.pstatic.net/20211116_218/1637044152743qvvAG_JPEG/movie_image.jpg?type=m203_290_2"></a>
                 <div class="list-cont">
@@ -87,7 +87,63 @@
         </div>
     </div>
 
+    <input type="hidden" value="{{link}}" id="url_link">
+
     {% include '/layout/footer.html' %}
 
+    <script>
+        $(document).ready(function (){
+            $('#movie_listBox').empty();
+            showDetailMovie();
+        })
+
+        function showDetailMovie() {
+
+            let link = $('#url_link').val();
+            //console.log(link);
+
+            $.ajax({
+              type: 'GET',
+                url: `/api/detail?link=${link}`,
+                data: {},
+                success: function (response) {
+                    let detail = response['movie_detail'];
+
+                    let title = detail['title'];
+                    let act = detail['act'];
+                    let genr = detail['genr'];
+                    let desc = detail['desc'];
+                    let drt = detail['drt'];
+                    let image = detail['image'];
+                    let url = detail['search'];
+
+                    let temp_html = `<div class="movie-list">
+                                            <a class="list-img" href="${url}" ><img src="${image}"></a>
+                                            <div class="list-cont">
+                                                <div class="movie-name">
+                                                    <span class="movie-age">15</span><span class="movie-tit">${title}</span>
+                                                </div>
+                                                <div class="summary">
+                                                    <span class="title">개요</span><span class="text">${genr}</span>
+                                                </div>
+                                                <div class="director">
+                                                    <span class="title">감독</span><span class="text">${drt}</span>
+                                                </div>
+                                                <div class="actor">
+                                                    <span class="title">출연</span><span class="text">${act}</span>
+                                                </div>
+                                                <div class="contents">
+                                                    <span class="title">줄거리</span>
+                                                    <p class="text">“${desc}</p>
+                                                </div>
+                                            </div>
+                                        </div>`;
+
+                    $('#movie_listBox').append(temp_html);
+                }
+            })
+
+        }
+    </script>
 </body>
 </html>

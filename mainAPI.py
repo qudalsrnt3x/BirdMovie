@@ -38,12 +38,15 @@ def get_movies(url):
     # 가져올 영화 갯수
     count = 5
 
+    # link 앞에 공통으로 붙일 url
+    naver_url = 'https://movie.naver.com'
+
     # 스크래핑 코드
     movies = soup.find('ul', class_='lst_detail_t1').find_all('li')
 
     for index, movie in enumerate(movies):
         title = movie.select_one('dt.tit > a').text
-        link = movie.select_one('dt.tit > a')['href']
+        link = naver_url + movie.select_one('dt.tit > a')['href']
         img = movie.select_one('img')['src']
 
         # 딕셔너리에 담아주기
