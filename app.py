@@ -42,12 +42,12 @@ def movieSearch():
     path = request.path
 
     link = request.args.get('link')
-    print(link)
+    # print(link)
 
     # 핑퐁핑퐁 순서_1번 사용할 수 있게 code 값 만들어 html로 넘겨주기
     # code값을 가져오기 위해 split로 코드만 때어와 print확인 후 넘겨 주기
     code = link.split('code=')[1]
-    print(code)
+    # print(code)
     return render_template('movie-search.html', path=path, link=link, code=code)
 
 @app.route('/my-movie')
