@@ -1,9 +1,11 @@
-import json
-
 from flask import Flask, render_template, jsonify, request, Blueprint
 
 import requests
 from bs4 import BeautifulSoup
+
+from pymongo import MongoClient
+client = MongoClient('localhost', 27017)
+db = client.dbsearch
 
 detailAPI = Blueprint('detail', __name__)
 
@@ -16,7 +18,7 @@ detailAPI = Blueprint('detail', __name__)
 # 해당 메소드에서 link를 가져온다.
 # render_template을 통해 movie-search.html 파일을 넘겨줌과 동시에 link(키값)=link(밸류값) 도 같이 넘겨준다.
 # 3. 두번째 핑퐁
-# movie-search.html에서 우리는 크롤링한 데이터를 가져와야 하는데 링크마다 정보다 달라야 한다. 그래서 크롤링할 정보를 가져올 때 링크를 같이 넘겨준다.
+# movie-search.html에서 우리는 크롤링한 데이터를 가져와야 하는데 링크마다 정보가 달라야 한다. 그래서 크롤링할 정보를 가져올 때 링크를 같이 넘겨준다.
 # <input type="hidden" value="{{link}}" id="url_link"> 을 통해 input 값에 link데이터를 저장
 # movie-search 페이지가 로딩될 때 크롤링 정보를 가져와야하니까
 # $(document).ready(function (){
@@ -63,12 +65,11 @@ def listing():
         'genr': genr,
         'search': link_receive,
     }
-
     return jsonify({'movie_detail': doc})
-#
-#
+
+
 # ## API 역할을 하는 부분
-# @app.route('/memo', methods=['POST'])
+# @reviewAPI.route('/memo', methods=['POST'])
 # def saving():
 #     search_receive = request.form['search_give']
 #     headers = {
@@ -98,30 +99,53 @@ def listing():
 #     return jsonify({'msg': '저장완'})
 #
 #
-# # review 부분
-# @app.route('/review', methods=['POST'])
-# def write_review():
+
+
+# review 부분
+@detailAPI.route('/review', methods=['POST'])
+def write_review():
+    author_receive = request.form['author_give']
+    review_receive = request.form['review_give']
+
+    doc = {
+        'author': author_receive,
+        'review': review_receive,
+    }
+    db.moviereview.insert_one(doc)
+
+    return jsonify({'msg': '저장 완료'})
+
+
+@detailAPI.route('/review/read', methods=['GET'])
+def read_reviews():
+    reviews = list(db.moviereview.find({}, {'_id': False}))
+    return jsonify({'all_reviews': reviews})
+
+
+
+# @detailAPI.route('/api/review', methods=['GET'])
+# def movieReview():
+#     moviereview = list(db.moviereview.find({}, {'_id:': False}))
+#     return jsonify({'all_review': moviereview})
+#
+#
+# @detailAPI.route('/api/review', methods=['POST'])
+# def movieReviews():
 #     author_receive = request.form['author_give']
 #     review_receive = request.form['review_give']
 #
 #     doc = {
 #         'author': author_receive,
-#         'review': review_receive,
+#         'review': review_receive
 #     }
 #     db.moviereview.insert_one(doc)
 #
-#     return jsonify({'msg': '저장 완료'})
-#
-#
-# @app.route('/review/read', methods=['GET'])
-# def read_reviews():
-#     reviews = list(db.moviereview.find({}, {'_id': False}))
-#     return jsonify({'all_reviews': reviews})
-#
-#
-# # @app.route('/review/delete', methods=['POST'])
-# # def delete_Review():
-# #     name_receive = request.form['name_give']
-# #     db.moviereview.delete_one({'name': name_receive})
-# #     print(name_receive)
-# #     return jsonify({'msg': '삭제가 완료되었습니다'})
+#     return jsonify({'msg': '저장 완'})
+
+
+# # # @app.route('/review/delete', methods=['POST'])
+# # # def delete_Review():
+# # #     name_receive = request.form['name_give']
+# # #     db.moviereview.delete_one({'name': name_receive})
+# # #     print(name_receive)
+# # #     return jsonify({'msg': '삭제가 완료되었습니다'})

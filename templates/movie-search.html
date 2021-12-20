@@ -16,7 +16,7 @@
 <!-- 기본CSS -->
     <link rel="stylesheet" href="../static/css/page/movie-search.css">
     <!--    <link href="{{url_for('static', filename='css/main.css')}}" rel="stylesheet" >-->
-    <script src="../static/js/main.js"></script>
+    <script src="../static/js/search.js"></script>
 
 </head>
 <body>
@@ -55,36 +55,14 @@
         <form class="review-input">
             <p class="input-name">
                 <span>작성자</span>
-                <input class="input-name-cont" type="text" placeholder="작성자">
+                <input class="input-name-cont" type="text" placeholder="작성자" id="author">
             </p>
             <p class="input-text">
                 <span>내     용</span>
-                <textarea class="input-text-cont" placeholder="내용을 입력하세요"></textarea>
-                <button class="review-input-save">저장</button>
+                <textarea class="input-text-cont" placeholder="내용을 입력하세요" id="review"></textarea>
+                <button class="review-input-save" onclick="makeReview()">저장</button>
             </p>
         </form>
-        <div class="review-show">
-            <div class="review-box">
-                <p class="show-name">정소영</p>
-                <p class="show-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur alias sequi maiores repudiandae, corporis aliquam enim quae vel eligendi facilis odit saepe iusto. </p>
-                <button class="review-show-del">삭제</button>
-            </div>
-            <div class="review-box">
-                <p class="show-name">정소영</p>
-                <p class="show-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur alias sequi maiores repudiandae, corporis aliquam enim quae vel eligendi facilis odit saepe iusto. </p>
-                <button class="review-show-del">삭제</button>
-            </div>
-            <div class="review-box">
-                <p class="show-name">정소영</p>
-                <p class="show-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur alias sequi maiores repudiandae, corporis aliquam enim quae vel eligendi facilis odit saepe iusto. </p>
-                <button class="review-show-del">삭제</button>
-            </div>
-                        <div class="review-box">
-                <p class="show-name">정소영</p>
-                <p class="show-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur alias sequi maiores repudiandae, corporis aliquam enim quae vel eligendi facilis odit saepe iusto. </p>
-                <button class="review-show-del">삭제</button>
-            </div>
-        </div>
     </div>
 
     <input type="hidden" value="{{link}}" id="url_link">
