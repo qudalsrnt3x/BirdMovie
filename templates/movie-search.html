@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="../static/css/page/movie-search.css">
     <!--    <link href="{{url_for('static', filename='css/main.css')}}" rel="stylesheet" >-->
     <script src="../static/js/search.js"></script>
+    <script src="../static/js/main.js"></script>
 
 </head>
 <body>
@@ -63,9 +64,14 @@
                 <button class="review-input-save" onclick="makeReview()">저장</button>
             </p>
         </form>
+        <div class="review-show">
+        </div>
     </div>
 
     <input type="hidden" value="{{link}}" id="url_link">
+
+<!--    핑퐁핑퐁 2번 app.py에서 넘겨준 code값을 js에서 사용 할 수 없으므로 js에서 사용 할 수 있게 만들어 주기-->
+    <input type="hidden" value="{{code}}" id="code">
 
     {% include '/layout/footer.html' %}
 

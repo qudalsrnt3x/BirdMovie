@@ -107,7 +107,11 @@ def write_review():
     author_receive = request.form['author_give']
     review_receive = request.form['review_give']
 
+    # 핑퐁핑퐁_3번 서버에서 db에 넣어줄 디렉토리 만들기
+    code_receive = request.form['code_give']
+
     doc = {
+        'code': code_receive,
         'author': author_receive,
         'review': review_receive,
     }
@@ -118,7 +122,9 @@ def write_review():
 
 @detailAPI.route('/review/read', methods=['GET'])
 def read_reviews():
-    reviews = list(db.moviereview.find({}, {'_id': False}))
+    # 핑퐁핑퐁_5번 요청한 code값 보여주기
+    code_receive = request.args.get('code_give')
+    reviews = list(db.moviereview.find({'code': code_receive}, {'_id': False}))
     return jsonify({'all_reviews': reviews})
 
 
