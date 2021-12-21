@@ -4,6 +4,7 @@ import requests
 from bs4 import BeautifulSoup
 
 from pymongo import MongoClient
+
 client = MongoClient('localhost', 27017)
 db = client.dbsearch
 
@@ -38,7 +39,6 @@ detailAPI = Blueprint('detail', __name__)
 
 @detailAPI.route('/api/detail', methods=['GET'])
 def listing():
-
     link_receive = request.args.get('link')
 
     headers = {
@@ -110,11 +110,24 @@ def write_review():
     # 핑퐁핑퐁_3번 서버에서 db에 넣어줄 디렉토리 만들기
     code_receive = request.form['code_give']
 
+    # 한줄평 db의 갯수 가져오기
+    count = db.moviereview.count()
+
+    # num 값 초기화
+    num = 0
+
+    if count == 0:  # 갯수가 0개일 경우
+        num = 1     # num 1부터 넣어준다.
+    elif count > 0:   # 갯수가 0개 이상일 경우
+        num = list(db.moviereview.find().sort('num', -1).limit(1))[0]['num'] + 1    # num + 1을 해준다.
+
     doc = {
+        'num': num,
         'code': code_receive,
         'author': author_receive,
         'review': review_receive,
     }
+
     db.moviereview.insert_one(doc)
 
     return jsonify({'msg': '저장 완료'})
@@ -125,33 +138,19 @@ def read_reviews():
     # 핑퐁핑퐁_5번 요청한 code값 보여주기
     code_receive = request.args.get('code_give')
     reviews = list(db.moviereview.find({'code': code_receive}, {'_id': False}))
+
+    list(db.moviereview.find({'code': code_receive}))
+
     return jsonify({'all_reviews': reviews})
 
 
+@detailAPI.route('/review/delete', methods=['POST'])
+def delete_Review():
+    # num 값 받아오기
+    num_receive = int(request.form['num_give'])
+    # print(num_receive)
 
-# @detailAPI.route('/api/review', methods=['GET'])
-# def movieReview():
-#     moviereview = list(db.moviereview.find({}, {'_id:': False}))
-#     return jsonify({'all_review': moviereview})
-#
-#
-# @detailAPI.route('/api/review', methods=['POST'])
-# def movieReviews():
-#     author_receive = request.form['author_give']
-#     review_receive = request.form['review_give']
-#
-#     doc = {
-#         'author': author_receive,
-#         'review': review_receive
-#     }
-#     db.moviereview.insert_one(doc)
-#
-#     return jsonify({'msg': '저장 완'})
+    # db에서 삭제
+    db.moviereview.delete_one({'num': num_receive})
 
-
-# # # @app.route('/review/delete', methods=['POST'])
-# # # def delete_Review():
-# # #     name_receive = request.form['name_give']
-# # #     db.moviereview.delete_one({'name': name_receive})
-# # #     print(name_receive)
-# # #     return jsonify({'msg': '삭제가 완료되었습니다'})
+    return jsonify({'msg': '삭제가 완료되었습니다'})

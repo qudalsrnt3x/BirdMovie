@@ -32,13 +32,34 @@ function showReview() {
             for (let i = 0; i < reviews.length; i++) {
                 let author = reviews[i]['author']
                 let review = reviews[i]['review']
+                let num = reviews[i]['num']
 
                 let temp_html = `<div class="review-box">
                                             <p class="show-name">${author}</p>
                                             <p class="show-text">${review}</p>
-                                            <button class="review-show-del" onclick="delete_Review()">삭제</button>`
+                                            <button class="review-show-del" onclick="delete_Review(${num})">삭제</button>
+                                 </div>`
                 $('.review-show').append(temp_html)
             }
+        }
+    })
+}
+
+function delete_Review(num) {
+    // alert(num);
+
+    let del_ok = confirm('삭제하시겠습니까?');
+
+    if (del_ok === false)
+        return;
+
+    $.ajax({
+        type: 'POST',
+        url: '/review/delete',
+        data: {num_give:num},
+        success: function (response) {
+            alert(response['msg']);
+            location.reload();
         }
     })
 }
